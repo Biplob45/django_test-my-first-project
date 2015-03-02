@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block sidebar %}
+<ul>
+	<li><a href="/articles/all">Articles</a></li>
+	<li><a href="/articles/create">Create Article</a></li>
+</ul>
+
+<h3>Search</h3>    <!--16 th video -->
+{% csrf_token %}   <!--16 th video -->
+<input type="text" id="search" name="search" />  <!--16 th video -->
+
+<ul id="search-results">     <!--16 th video -->
+
+</ul>    <!--16 th video -->
+
+{% endblock %}
+{% block content %}
+<h2>Language is : {{language}}</h2>  <!--8th video ar jonno-->
+
+<h2> Session Language is: {{session_language}}</h2>
+
+{% if articles.count > 0 %}
+{% for article in articles %}
+<div>
+<h2><a href="/articles/get/{{ article.id }}/">{{ article.title|upper }} </a> </h2>
+<p>{{ article.body |lower | truncatewords:"10" }}</p>
+<p>{{article.likes}} people liked this article</a></p>  <!--13th video-->
+
+</div>
+{% endfor %}
+{% else %}
+<p>None to show</p>
+{% endif %}
+
+{% endblock %}

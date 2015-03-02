@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block sidebar %}
+	<ul>
+		<li><a href = "/articles/all">Articles</a></li>
+	</ul>
+{% endblock %}
+
+{%block content %}
+
+<h1>{{ article.title }}</h1>
+<p>{{ article.body }}</p>
+
+
+{% if article.thumbnail %}   <!-- 15th video -->
+<p><img src="/media/{{article.thumbnail}}" width="200"/></p>    <!-- 15th video   (uploded file ta kete dibo)-->
+{% endif %}   <!-- 15th video -->
+
+<p>{{article.likes}} people liked this article</a></p>  <!--13th video-->
+<p><a href="/articles/like/{{article.id}}">Likes</a></p> <!--13th video-->
+
+<h2>Comments</h2>   <!--14th video-->
+{% for c in article.comment_set.all %}  <!--14th video-->
+<p>{{c.name}}: {{c.body}}</p>  <!--14th video-->
+{% endfor %}   <!--14th video-->
+
+<p><a href="/articles/add_comment/{{article.id}}">Add Comment</a></p>    <!--14th video-->
+
+{% endblock %}
